@@ -1,0 +1,14 @@
+[
+    {
+        "id": "name",
+        "label": "Name"
+    },
+    {
+        "id": "desc",
+        "label": "Description"
+    },
+    {
+        "id": "createdate",
+        "label": "Create Date"
+    }
+]
