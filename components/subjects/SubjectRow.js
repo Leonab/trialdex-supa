@@ -1,5 +1,7 @@
-import { Checkbox, IconButton, TableCell, TableRow, Tooltip } from "@mui/material";
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
 import QrCodeIcon from "@mui/icons-material/QrCode";
+import { Checkbox, IconButton, TableCell, TableRow, Tooltip } from "@mui/material";
 import { Fragment, useState } from "react";
 import SubjectQrDialog from "./SubjectQrDialog";
 
@@ -46,6 +48,10 @@ const SubjectRow = (props) => {
 							<QrCodeIcon />
 						</IconButton>
 					</Tooltip>
+				</TableCell>
+				<TableCell>
+					<CreateIcon />
+					<DeleteIcon color='error' padding={1} />
 				</TableCell>
 			</TableRow>
 			<SubjectQrDialog value={row.id} dialogOpen={dialogOpen} closeHandler={closeHandler} />

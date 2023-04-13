@@ -26,5 +26,9 @@
     {
         "id": "details",
         "label": "Details"
+    },
+    {
+        "id": "action",
+        "label": ""
     }
 ]

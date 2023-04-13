@@ -9,9 +9,19 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 const databaseUrl = Deno.env.get('SUPABASE_DB_URL')!
 
 // Create a database pool with three connections that are lazily established
-const pool = new postgres.Pool(databaseUrl, 3, true)
+const pool = new postgres.Pool(databaseUrl, 3, true);
+
+const corsHeaders = {
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, access-control-allow-origin, Access-Control-Allow-Headers',
+};
 
 serve(async (_req) => {
+	console.log(_req);
+	if (_req.method === 'OPTIONS') {
+		return new Response('ok', { headers: corsHeaders })
+	}
+
 	try {
 		const { trial_id, max_count } = await _req.json();
 		console.log(trial_id);
@@ -73,7 +83,8 @@ serve(async (_req) => {
 			return new Response(body, {
 				status: 200,
 				headers: {
-					'Content-Type': 'application/json; charset=utf-8',
+					...corsHeaders,
+					'Content-Type': 'application/json',
 				},
 			})
 		} finally {
@@ -82,7 +93,13 @@ serve(async (_req) => {
 		}
 	} catch (err) {
 		console.error(err)
-		return new Response(String(err?.message ?? err), { status: 500 })
+		return new Response(String(err?.message ?? err), {
+			status: 500,
+			headers: {
+				...corsHeaders,
+				'Content-Type': 'application/json',
+			},
+		})
 	}
 });
 

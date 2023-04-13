@@ -1,7 +1,7 @@
-import { Button, Checkbox, TableCell, TableRow, Tooltip } from "@mui/material";
-import Link from "next/link";
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Checkbox, TableCell, TableRow, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
-import React from "react";
 
 const TrialRow = (props) => {
 	const row = props.data;
@@ -28,6 +28,10 @@ const TrialRow = (props) => {
 				</TableCell>
 				<TableCell>{row.description}</TableCell>
 				<TableCell>{row.created_at}</TableCell>
+				<TableCell>
+					<CreateIcon />
+					<DeleteIcon color='error' padding={1} />
+				</TableCell>
 			</TableRow>
 		</Tooltip>
 	);

@@ -1,31 +1,30 @@
+import CreateTrialDialog from "@/components/trials/CreateTrialDialog";
+import TrialsTable from "@/components/trials/TrialsTable";
 import AddIcon from "@mui/icons-material/Add";
-import { Box, Button, CircularProgress, Paper, Typography } from "@mui/material";
+import ScienceIcon from '@mui/icons-material/Science';
+import { Box, Button, CircularProgress, Container, Paper, Typography } from "@mui/material";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Fragment, useEffect, useState } from "react";
-// import TrialsTable from "./TrialsTable";
-// import CreateTrialDialog from "../../components/trials/CreateTrialDialog";
-import TrialsTable from "@/components/trials/TrialsTable";
-import CreateTrialDialog from "@/components/trials/CreateTrialDialog";
 
 const Trial = () => {
 	const [open, setOpen] = useState(false);
-    const supabase = useSupabaseClient();
+	const supabase = useSupabaseClient();
 	const [isloaded, setIsLoaded] = useState(false);
 	const [trials, setTrials] = useState([]);
-	
-    const user = useUser();
-    
+
+	const user = useUser();
+
 	const getTrialData = async () => {
-        if (user) {
-            console.log(user);
-            const { data, error } = await supabase
-                .from('trials')
-                .select('*')
-                .eq('user_id', user.id);
-    
-            setIsLoaded(true);
-            setTrials(data);
-        }
+		if (user) {
+			console.log(user);
+			const { data, error } = await supabase
+				.from('trials')
+				.select('*')
+				.eq('user_id', user.id);
+
+			setIsLoaded(true);
+			setTrials(data);
+		}
 	};
 
 	useEffect(() => {
@@ -42,21 +41,32 @@ const Trial = () => {
 
 	return (
 		<Fragment>
-			<Box padding={2} display="flex" justifyContent="space-between">
-				<Typography variant="h4" component="p">
-					Ongoing Trials -
-				</Typography>
-				<Button variant="contained" startIcon={<AddIcon />} padding={2} size="small" onClick={createTrialClickHandler}>
-					Create New Trial
-				</Button>
+			<Box padding={1}>
+				<Paper elevation={1}>
+					<Box padding={2} display="flex" >
+						<Typography variant="h5" component="p">
+							Ongoing Trials
+						</Typography>
+						<ScienceIcon color="primary" fontSize="large" />
+
+					</Box>
+				</Paper>
 			</Box>
-			<Paper>
+			<Container>
 				<Box padding={2}>
-					{/* {error && <Typography variant="div">Error: {error.message}</Typography>} */}
-					{!isloaded && <CircularProgress />}
-					{isloaded && <TrialsTable data={trials} />}
+					<Paper>
+						<Box padding={2} sx={{ flexGrow: 1, float: 'right' }}>
+							<Button variant="contained" startIcon={<AddIcon />} padding={2} onClick={createTrialClickHandler}>
+								Create New Trial
+							</Button>
+						</Box>
+						<Box>
+							{!isloaded && <CircularProgress />}
+							{isloaded && <TrialsTable data={trials} />}
+						</Box>
+					</Paper>
 				</Box>
-			</Paper>
+			</Container>
 			<CreateTrialDialog open={open} closeHandler={closeHandler}></CreateTrialDialog>
 		</Fragment>
 	);

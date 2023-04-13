@@ -10,5 +10,9 @@
     {
         "id": "createdate",
         "label": "Create Date"
+    },
+    {
+        "id": "action",
+        "label": ""
     }
 ]

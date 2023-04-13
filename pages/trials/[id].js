@@ -1,13 +1,13 @@
-import AddIcon from "@mui/icons-material/Add";
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-import { Box, Button, CircularProgress, Paper, Typography } from "@mui/material";
-import { Fragment, useEffect, useState } from "react";
 import CreateSubjectDialog from "@/components/subjects/CreateSubjectDialog";
 import SubjectsTable from "@/components/subjects/SubjectsTable";
 import TrialExpanded from "@/components/trials/TrialExpanded";
+import useNotifHandler from "@/hooks/useNotifHandler";
+import AddIcon from "@mui/icons-material/Add";
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import { Box, Button, CircularProgress, Container, Paper, Typography } from "@mui/material";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
-import useNotifHandler from "@/hooks/useNotifHandler";
+import { Fragment, useEffect, useState } from "react";
 
 const TrialDetails = (props) => {
     const router = useRouter();
@@ -17,7 +17,6 @@ const TrialDetails = (props) => {
     const [subjectLoaded, setSubjectLoaded] = useState(false);
     const [trial, setTrial] = useState({});
     const [subjects, setSubjects] = useState([]);
-    const [error, setError] = useState(null);
     const { ctx, addCtx } = useNotifHandler();
 
     const { id } = router.query;
@@ -89,30 +88,33 @@ const TrialDetails = (props) => {
         }
 
         addCtx("Successfully randomized subjects", "success");
-        setError(null);
     }
 
     return (
         <Fragment>
             {trialLoaded ? <TrialExpanded trial={trial} /> : <CircularProgress />}
-            <Paper>
-                <Box padding={2} display="flex" justifyContent="space-between">
-                    <Typography variant="h4" component="p">
-                        Subjects: {subjects?.length}
-                    </Typography>
-                    <Box padding={1}>
-                        <Button variant="contained" startIcon={<ShuffleIcon />} color="secondary" onClick={randomizeSubjects}>
-                            Randomize all subjects
-                        </Button>
-                        <Button variant="contained" startIcon={<AddIcon />} onClick={clickHandler}>
-                            Add New Subjects
-                        </Button>
-                    </Box>
+            <Container>
+                <Box padding={2}>
+                    <Paper>
+                        <Box padding={2} display="flex" justifyContent="space-between">
+                            <Typography variant="h4" component="p">
+                                Subjects: {subjects?.length}
+                            </Typography>
+                            <Box padding={1}>
+                                <Button variant="contained" startIcon={<ShuffleIcon />} color="secondary" onClick={randomizeSubjects}>
+                                    Randomize all subjects
+                                </Button>
+                                <Button variant="contained" startIcon={<AddIcon />} onClick={clickHandler}>
+                                    Add New Subjects
+                                </Button>
+                            </Box>
+                        </Box>
+                        <Paper>
+                            {subjectLoaded ? <SubjectsTable data={subjects} /> : <CircularProgress />}
+                        </Paper>
+                    </Paper>
                 </Box>
-                <Box padding={1}>
-                    {subjectLoaded ? <SubjectsTable data={subjects} /> : <CircularProgress />}
-                </Box>
-            </Paper>
+            </Container>
             <CreateSubjectDialog open={open} closeHandler={closeHandler} id={id}></CreateSubjectDialog>
         </Fragment>
     );
