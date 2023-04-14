@@ -110,7 +110,7 @@ const TrialDetails = (props) => {
                             </Box>
                         </Box>
                         <Paper>
-                            {subjectLoaded ? <SubjectsTable data={subjects} /> : <CircularProgress />}
+                            {subjectLoaded ? <SubjectsTable data={subjects} trial={trial}/> : <CircularProgress />}
                         </Paper>
                     </Paper>
                 </Box>

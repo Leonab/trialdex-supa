@@ -4,7 +4,7 @@ import NotificationProvider from '@/providers/NotificationProvider';
 import createEmotionCache from '@/utils/createEmotionCache';
 import theme from '@/utils/theme';
 import { CacheProvider } from '@emotion/react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider, Typography } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -13,6 +13,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import '../styles/globals.css';
+import Footer from '@/components/Footer';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -31,6 +32,7 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }) 
 							<CssBaseline />
 							<Header />
 							<Component {...pageProps} />
+							<Footer />
 						</SessionContextProvider>
 					</ThemeProvider>
 				</LocalizationProvider>

@@ -1,3 +1,4 @@
+import { prettyDate } from '@/utils/date-utils';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Checkbox, TableCell, TableRow, Tooltip } from "@mui/material";
@@ -27,7 +28,7 @@ const TrialRow = (props) => {
 					{row.name}
 				</TableCell>
 				<TableCell>{row.description}</TableCell>
-				<TableCell>{row.created_at}</TableCell>
+				<TableCell>{prettyDate(row.created_at)}</TableCell>
 				<TableCell>
 					<CreateIcon />
 					<DeleteIcon color='error' padding={1} />

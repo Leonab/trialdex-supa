@@ -1,3 +1,4 @@
+import { prettyDate } from '@/utils/date-utils';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import QrCodeIcon from "@mui/icons-material/QrCode";
@@ -7,6 +8,7 @@ import SubjectQrDialog from "./SubjectQrDialog";
 
 const SubjectRow = (props) => {
 	const row = props.data;
+	const trial = props.trial;
 
 	const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -37,11 +39,11 @@ const SubjectRow = (props) => {
 				<TableCell component="th" id={row.id} scope="row" padding="normal">
 					{row.firstname}
 				</TableCell>
-				<TableCell>{row.lastname}</TableCell>
-				<TableCell>{row.dob}</TableCell>
-				<TableCell>{row.email}</TableCell>
-				<TableCell>{row.orientation}</TableCell>
-				<TableCell>{row.hospital_id}</TableCell>
+				<TableCell>{row?.lastname}</TableCell>
+				<TableCell>{prettyDate(row.dob)}</TableCell>
+				<TableCell>{row?.email}</TableCell>
+				<TableCell>{row?.orientation}</TableCell>
+				<TableCell>{row?.hospital_id}</TableCell>
 				<TableCell>
 					<Tooltip title="Expand QR Code">
 						<IconButton onClick={qrClickHandler}>
@@ -54,7 +56,7 @@ const SubjectRow = (props) => {
 					<DeleteIcon color='error' padding={1} />
 				</TableCell>
 			</TableRow>
-			<SubjectQrDialog value={row.id} dialogOpen={dialogOpen} closeHandler={closeHandler} />
+			<SubjectQrDialog subject={row} dialogOpen={dialogOpen} title={trial?.name} closeHandler={closeHandler} />
 		</Fragment>
 	);
 };

@@ -15,7 +15,7 @@ export default function MyDocument(props) {
 				{emotionStyleTags}
 			</Head>
 			<body>
-				<div style={{backgroundColor: '#f5f5f7'}}>
+				<div style={{backgroundColor: '#f5f5f7', height: '100vh'}}>
 				<Main />
 				</div>
 				<NextScript />
