@@ -1,6 +1,8 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import Link from '@mui/material/Link';
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import NextLink from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from 'react';
 
@@ -38,32 +40,29 @@ const Header = (props) => {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static" sx={{ backgroundColor: 'white'}}>
+			<AppBar position="static" sx={{ background: 'white' }} elevation={0}>
 				<Container maxWidth="xl">
 					<Toolbar disableGutters>
 						<IconButton size="large" edge="start" color="primary" aria-label="menu" sx={{ mr: 2 }}>
 							<MenuIcon />
 						</IconButton>
-						{/* <Typography variant="h5" component="h1" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={redirectToHome}>
-							TrialDex
-						</Typography> */}
-						<Typography
-							variant="h6"
-							noWrap
-							component="a"
-							href="/trials"
-							sx={{
-								mr: 4,
-								display: { xs: 'none', md: 'flex' },
-								fontFamily: 'monospace',
-								fontWeight: 700,
-								letterSpacing: '.4rem',
-								color: 'primary',
-								textDecoration: 'none',
-							}}
-						>
-							TrialDex
-						</Typography>
+
+						<Link href="/trials" component={NextLink} sx={{ textDecoration: 'none' }}>
+							<Typography
+								variant="h6"
+								noWrap
+								sx={{
+									mr: 4,
+									display: { xs: 'none', md: 'flex' },
+									fontFamily: 'monospace',
+									fontWeight: 700,
+									letterSpacing: '.4rem',
+									color: 'primary',
+								}}
+							>
+								TrialDex
+							</Typography>
+						</Link>
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 							{pages.map((page) => (
 								<Button
@@ -79,9 +78,6 @@ const Header = (props) => {
 							{user ? (
 								<Box>
 									<Tooltip title="Open settings">
-										{/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-								</IconButton> */}
 										<Typography color="primary" onClick={handleOpenUserMenu} sx={{ cursor: 'pointer' }}>{user?.email}</Typography>
 									</Tooltip>
 									<Menu
@@ -100,15 +96,15 @@ const Header = (props) => {
 										open={Boolean(anchorElUser)}
 										onClose={handleCloseUserMenu}
 									>
-										
-											<MenuItem key="profile" onClick={handleCloseUserMenu}>
-												<Typography textAlign="center">Profile</Typography>
-											</MenuItem>
-											<MenuItem key="logout" onClick={handleCloseUserMenu}>
-												<Typography textAlign="center" onClick={() => supabase.auth.signOut()}>Logout</Typography>
-											</MenuItem>
+
+										<MenuItem key="profile" onClick={handleCloseUserMenu}>
+											<Typography textAlign="center">Profile</Typography>
+										</MenuItem>
+										<MenuItem key="logout" onClick={handleCloseUserMenu}>
+											<Typography textAlign="center" onClick={() => supabase.auth.signOut()}>Logout</Typography>
+										</MenuItem>
 									</Menu>
-								</Box>) : (<Button color="secondary" href="/login">Login</Button>)}
+								</Box>) : (<Button color="primary" variant='contained' href="/login">Login</Button>)}
 						</Box>
 					</Toolbar>
 				</Container>

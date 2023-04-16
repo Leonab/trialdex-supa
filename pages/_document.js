@@ -1,8 +1,8 @@
 import createEmotionCache from '@/utils/createEmotionCache';
-import PropTypes from 'prop-types';
-import theme, { roboto } from '@/utils/theme'
+import theme from '@/utils/theme';
 import createEmotionServer from '@emotion/server/create-instance';
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document';
+import PropTypes from 'prop-types';
 
 export default function MyDocument(props) {
 	const { emotionStyleTags } = props;
@@ -15,8 +15,8 @@ export default function MyDocument(props) {
 				{emotionStyleTags}
 			</Head>
 			<body>
-				<div style={{backgroundColor: '#f5f5f7', height: '100vh'}}>
-				<Main />
+				<div style={{ backgroundColor: '#f5f5f7', height: '100vh' }}>
+					<Main />
 				</div>
 				<NextScript />
 			</body>

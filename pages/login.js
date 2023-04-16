@@ -1,6 +1,7 @@
+import { Box, Container, Paper } from "@mui/material";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useRouter } from "next/router";
 
 const Login = () => {
@@ -15,8 +16,22 @@ const Login = () => {
         }
         router.push(redirectedFrom);
     }
+
     return (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }}/>
+        <Container padding={2}>
+            <Box padding={2}>
+                <Paper>
+                    <Box padding={5}>
+                        <Auth supabaseClient={supabase}
+                            providers={['google', 'facebook', 'twitter']}
+                            appearance={{
+                                theme: ThemeSupa,
+                            }}
+                        />
+                    </Box>
+                </Paper>
+            </Box>
+        </Container>
     );
 };
 

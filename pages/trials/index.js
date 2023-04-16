@@ -1,3 +1,4 @@
+import InfoBar from "@/components/UI/InfoBar";
 import CreateTrialDialog from "@/components/trials/CreateTrialDialog";
 import TrialsTable from "@/components/trials/TrialsTable";
 import AddIcon from "@mui/icons-material/Add";
@@ -16,7 +17,6 @@ const Trial = () => {
 
 	const getTrialData = async () => {
 		if (user) {
-			console.log(user);
 			const { data, error } = await supabase
 				.from('trials')
 				.select('*')
@@ -41,17 +41,15 @@ const Trial = () => {
 
 	return (
 		<Fragment>
-			<Box padding={1}>
-				<Paper elevation={1}>
-					<Box padding={2} display="flex" >
-						<Typography variant="h5" component="p">
-							Ongoing Trials
-						</Typography>
-						<ScienceIcon color="primary" fontSize="large" />
+			<InfoBar>
+				<Box padding={2} display="flex" >
+					<Typography variant="h5" component="p">
+						Ongoing Trials
+					</Typography>
+					<ScienceIcon color="primary" fontSize="large" />
 
-					</Box>
-				</Paper>
-			</Box>
+				</Box>
+			</InfoBar>
 			<Container>
 				<Box padding={2}>
 					<Paper>
