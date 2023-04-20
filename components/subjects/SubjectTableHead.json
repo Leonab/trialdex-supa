@@ -28,7 +28,11 @@
         "label": "Details"
     },
     {
-        "id": "action",
+        "id": "edit",
+        "label": ""
+    },
+    {
+        "id": "delete",
         "label": ""
     }
 ]

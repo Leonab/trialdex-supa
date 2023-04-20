@@ -12,7 +12,11 @@
         "label": "Create Date"
     },
     {
-        "id": "action",
+        "id": "edit",
+        "label": ""
+    },
+    {
+        "id": "delete",
         "label": ""
     }
 ]

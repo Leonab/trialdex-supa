@@ -1,8 +1,10 @@
-import { Box, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TablePagination, TableRow } from "@mui/material";
+import { Box, Paper, Table, TableBody, TableContainer, TableFooter } from "@mui/material";
 import EnhancedTableHead from "./EnhancedTableHead";
 
 const EnhancedTable = (props) => {
-    const columnHeaderData = props.columnHeaderData;
+    const { columnHeaderData, enableCheckBox } = props;
+
+
     return (
         <Box sx={{ width: '100%', overflow: 'hidden' }}>
             <Paper sx={{ width: '100%' }}>
@@ -13,14 +15,11 @@ const EnhancedTable = (props) => {
                         size="medium"
                         stickyHeader
                     >
-                        <EnhancedTableHead columns={columnHeaderData} />
+                        <EnhancedTableHead columns={columnHeaderData} enableCheckBox={enableCheckBox} />
                         <TableBody>
                             {props.children}
                         </TableBody>
                         <TableFooter>
-                            {/* <TableRow>
-                                <TablePagination rowsPerPageOptions={[10, 50]} />
-                            </TableRow> */}
                         </TableFooter>
                     </Table>
                 </TableContainer>

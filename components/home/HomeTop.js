@@ -5,7 +5,7 @@ import bg_1 from '../../public/images/background_1.png';
 
 const HomeTop = () => {
     return (
-        <Box sx={{ flexGrow: 1 }} style={{ backgroundImage: `url(${bg_1.src})`, backgroundSize: 'cover', height: '100vh', width: '100vw' }}>
+        <Box sx={{ flexGrow: 1 }} style={{ backgroundImage: `url(${bg_1.src})`, backgroundSize: 'cover', height: '100vh', width: '100vw' }} xs={4}>
             <Grid container justifyContent='space-around' flexWrap='wrap' alignItems="center" spacing={2}>
                 <Grid item container justifyContent="space-between" flexWrap='wrap' direction="column" alignItems="center" spacing={3} xs={12} sm={4}>
                     <Grid item xs>

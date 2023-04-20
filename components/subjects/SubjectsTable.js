@@ -6,9 +6,9 @@ const SubjectsTable = (props) => {
 	const subjects = props.data;
 	const trial = props.trial;
 	return (
-		<EnhancedTable columnHeaderData={columnHeaderData}>
+		<EnhancedTable columnHeaderData={columnHeaderData} enableCheckBox={false}>
 			{subjects.map((sub, index) => (
-				<SubjectRow key={sub.id} data={sub} index={index} trial={trial} />
+				<SubjectRow key={sub.id} row={sub} index={index} trial={trial} enableCheckBox={false} />
 			))}
 		</EnhancedTable>
 	);

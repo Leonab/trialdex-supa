@@ -40,7 +40,7 @@ const Header = (props) => {
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static" sx={{ background: 'white' }} elevation={0}>
+			<AppBar sx={{ background: 'white', position: 'static' }} elevation={0}>
 				<Container maxWidth="xl">
 					<Toolbar disableGutters>
 						<IconButton size="large" edge="start" color="primary" aria-label="menu" sx={{ mr: 2 }}>

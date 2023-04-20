@@ -57,7 +57,7 @@ const TrialDetails = (props) => {
         let { data, error } = await supabase
             .from('subjects')
             .select(`
-        *, trials!inner(id)
+        id, trial_id, created_at, firstname, lastname, dob, email, orientation, hospital_id, trials!inner(id)
         `)
             .eq('trial_id', id);
 
@@ -102,7 +102,7 @@ const TrialDetails = (props) => {
                             </Typography>
                             <Box padding={1}>
                                 <Button variant="contained" startIcon={<ShuffleIcon />} color="secondary" onClick={randomizeSubjects}>
-                                    Randomize all subjects
+                                    Randomize subjects
                                 </Button>
                                 <Button variant="contained" startIcon={<AddIcon />} onClick={clickHandler}>
                                     Add New Subjects
@@ -110,7 +110,7 @@ const TrialDetails = (props) => {
                             </Box>
                         </Box>
                         <Paper>
-                            {subjectLoaded ? <SubjectsTable data={subjects} trial={trial}/> : <CircularProgress />}
+                            {subjectLoaded ? <SubjectsTable data={subjects} trial={trial} /> : <CircularProgress />}
                         </Paper>
                     </Paper>
                 </Box>

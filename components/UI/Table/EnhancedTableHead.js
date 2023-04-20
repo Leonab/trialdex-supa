@@ -1,8 +1,7 @@
 import { Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
 
 const EnhancedTableHead = (props) => {
-    const columns = props.columns;
-    const enableCheckbox = props.enableCheckbox === "false" ? false : true;
+    const { columns, enableCheckbox } = props;
     return (
         <TableHead>
             <TableRow>

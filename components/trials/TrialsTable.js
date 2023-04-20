@@ -5,8 +5,8 @@ import TrialTableHead from "./TrialTableHead.json";
 const TrialsTable = (props) => {
     const trials = props.data;
     return (
-        <EnhancedTable columnHeaderData={TrialTableHead}>
-            {trials.map((trial, index) => <TrialRow key={trial.id} data={trial} />)}
+        <EnhancedTable columnHeaderData={TrialTableHead} enableCheckBox={false}>
+            {trials.map((trial, index) => <TrialRow key={trial.id} row={trial} enableCheckBox={false} />)}
         </EnhancedTable>
     );
 };
